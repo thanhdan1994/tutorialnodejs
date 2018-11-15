@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+Book =require('./../models/book');
 
 router.use(function timeLog (req, res, next) {
   console.log('Time: ', Date.now())
@@ -8,7 +9,12 @@ router.use(function timeLog (req, res, next) {
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+    Book.getBooks((err, books) => {
+        if(err){
+          throw err;
+        }
+        res.json(books);
+    });
 });
 
 router.get('/update/:id', function(req, res, next) {

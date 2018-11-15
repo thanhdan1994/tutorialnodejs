@@ -7,6 +7,12 @@
 var app = require('../app');
 var debug = require('debug')('application:server');
 var http = require('http');
+var mongoose = require('mongoose');
+
+// Connect to Mongoose
+mongoose.connect('mongodb://localhost/bookstore');
+var db = mongoose.connection;
+
 
 /**
  * Get port from environment and store in Express.
